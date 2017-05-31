@@ -119,7 +119,7 @@ public class WeatherActivity extends AppCompatActivity {
     public void requestWeather(final String weatherId) {
 
         String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=bc0418b57b2d4918819d3974ac1285d9";
-
+       this.mWeatherId=weatherId;
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
 
 
@@ -186,7 +186,7 @@ public class WeatherActivity extends AppCompatActivity {
         if(weather !=null&&"ok".equals(weather.status)) {
             String cityName = weather.basic.cityName;
             String updateTime = weather.basic.update.updateTime.split(" ")[1];
-            String degree = weather.now.temperature + "C";
+            String degree = weather.now.temperature + "°C";
             String weatherInfo = weather.now.more.info;
             titleCity.setText(cityName);
             titleUpdateTime.setText(updateTime);
@@ -210,9 +210,9 @@ public class WeatherActivity extends AppCompatActivity {
                 aqiText.setText(weather.aqi.city.aqi);
                 pm25Text.setText(weather.aqi.city.pm25);
             }
-            String comfort = "舒适度" + weather.suggestion.comfort.info;
-            String carWash = "洗车指数" + weather.suggestion.carWash.info;
-            String sport = "运动建议" + weather.suggestion.sport.info;
+            String comfort = "舒适度：" + weather.suggestion.comfort.info;
+            String carWash = "洗车指数：" + weather.suggestion.carWash.info;
+            String sport = "运动建议：" + weather.suggestion.sport.info;
             comfortText.setText(comfort);
             carWashText.setText(carWash);
             sportText.setText(sport);
